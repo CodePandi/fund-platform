@@ -2,9 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import http from "./api";
 
 // 引入element-ui
-import ElementUI from "element-ui";
+// import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import {
   Container,
@@ -14,16 +15,20 @@ import {
   MenuItem,
   Table,
   TableColumn,
+  Button,
 } from "element-ui";
-Vue.use(Container);
-Vue.use(Aside);
-Vue.use(Main);
-Vue.use(Menu);
-Vue.use(MenuItem);
-Vue.use(Table);
-Vue.use(TableColumn);
+Vue.use(Container)
+  .use(Aside)
+  .use(Main)
+  .use(Menu)
+  .use(MenuItem)
+  .use(Table)
+  .use(TableColumn)
+  .use(Button);
 
 Vue.config.productionTip = false;
+
+Vue.prototype.$http = http;
 
 new Vue({
   router,

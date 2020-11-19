@@ -7,39 +7,60 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    // name: "Home",
     component: Home,
     children: [
       {
-        path: "Dashboard",
+        redirect: "dashboard",
+        path: "/",
+        component: () => import("../views/Dashboard.vue"),
+      },
+      {
+        path: "dashboard",
         name: "Dashboard",
         component: () => import("../views/Dashboard.vue"),
       },
       {
         path: "fundGroupList",
-        name: "fundGroupList",
+        name: "FundGroupList",
         component: () => import("../views/FundGroupList.vue"),
       },
       {
-        path: "FundStatisticsList",
+        path: "fundStatisticsList",
         name: "FundStatisticsList",
         component: () => import("../views/FundStatisticsList.vue"),
-      },
+      }
     ],
   },
   {
-    path: "/about",
+    // path: "/about/:id",
+    path: "/abc-*",
     name: "About",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    props: true,
+    meta: {
+      title: "about",
+    },
   },
 ];
 
 const router = new VueRouter({
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  } else {
+    document.title = "fund-platform";
+  }
+  next();
+});
+
+router.afterEach((to, from) => {});
 
 export default router;
