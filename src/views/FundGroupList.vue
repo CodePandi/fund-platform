@@ -22,6 +22,7 @@
 
 <script>
 import axios from "axios";
+import utils from "@/utils";
 
 export default {
   name: "FundGroupList",
@@ -55,17 +56,9 @@ export default {
 
     this.$http.getFundGroupList((res) => {
       _this.tableData = res;
-			console.log(res);
     });
 
-    _this.height = document.documentElement.clientHeight - 40;
-    window.onresize = function () {
-      _this.height = document.documentElement.clientHeight - 40;
-    };
-		
-		axios.get(`/djapi/plan/position/detail?plan_code=CSI1014`).then(res => {
-			console.log(res.data.data.items);
-		})
+    utils.tableResize(this, 'height', 100)
   },
 };
 </script>

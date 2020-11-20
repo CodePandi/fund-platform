@@ -16,6 +16,10 @@ import {
   Table,
   TableColumn,
   Button,
+	Checkbox,
+	CheckboxGroup,
+	Row,
+	Col
 } from "element-ui";
 Vue.use(Container)
   .use(Aside)
@@ -24,7 +28,11 @@ Vue.use(Container)
   .use(MenuItem)
   .use(Table)
   .use(TableColumn)
-  .use(Button);
+  .use(Button)
+  .use(Checkbox)
+  .use(CheckboxGroup)
+  .use(Row)
+  .use(Col)
 
 Vue.config.productionTip = false;
 
